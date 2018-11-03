@@ -11,7 +11,7 @@
         <title>Carros</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href='../estilo/Produtos.css'>
+        <link rel="stylesheet" href='../estilo/carros.css'>
     </head>
     <section>
         <h1>Carros</h1>
@@ -35,9 +35,9 @@
                 <td><?=$linha["car_ano"]?></td>
                 <td><?=$linha["car_qtd"]?></td>
                 <td>
-                    <a href="carros.php?id=<?=$linha["id"]?>">Remover</a>
+                    <a href="carros.php?id=<?=$linha["car_id"]?>">Remover</a>
                     <br>
-                    <a href="carros.php?id=<?=$linha["id"]?>">Atualizar</a>
+                    <a href="carros.php?id=<?=$linha["car_id"]?>">Atualizar</a>
                 </td>
             </tr>
 
@@ -48,7 +48,7 @@
         </table>
         <hr>
         <br>
-        <form action="index.php?pagina=produtos" method="POST">
+        <form action="index.php?pagina=carros" method="POST">
             <br>
             <label for="valor_diaria">Valor diário R$:*</label>
             <input type="number" name="valor_diaria" required="required">
