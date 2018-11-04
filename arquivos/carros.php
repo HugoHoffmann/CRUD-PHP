@@ -1,8 +1,8 @@
 <?php
        
     include "conecta.php";
-    $query= "SELECT * FROM locacao.tbcarros";
-    $result= mysqli_query($conn, $query);
+    $sql= "SELECT * FROM locacao.tbcarros";
+    $resultado= pg_query($conn, $sql);
     
 ?>
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
                 <td>Ações</td>
             </tr>
     <?php
-        while ($linha= mysqli_fetch_array($result)){
+        while ($linha= pg_fetch_array($resultado)){
     ?>
             <tr>
                 <td><?=$linha["car_id"]?></td>
@@ -67,3 +67,8 @@
         </form>
     </section>
 </html>
+<?php
+    if(isset($_POST['gravar'])){
+        $insert = 'insert into tbcarros(car_valor_diaria,car_modelo,car_ano,car_qtd)'
+    }
+?>
