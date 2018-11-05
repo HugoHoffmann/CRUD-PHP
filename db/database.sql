@@ -2,6 +2,9 @@ CREATE TABLE tbcliente(
     cli_id SERIAL,
     cli_nome VARCHAR(30) NOT NULL,
     cli_documento VARCHAR(20) NOT NULL,
+    cli_telefone VARCHAR(20) NOT NULL,
+    cli_cidade VARCHAR(25) NOT NULL,
+    cli_estado VARCHAR(30) NOT NULL,
     CONSTRAINT pk_cli_id PRIMARY KEY (cli_id),
     CONSTRAINT uk_cli_documento UNIQUE(cli_documento)
 );
