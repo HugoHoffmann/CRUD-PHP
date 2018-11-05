@@ -69,6 +69,6 @@
 </html>
 <?php
     if(isset($_POST['gravar'])){
-        $insert = 'insert into tbcarros(car_valor_diaria,car_modelo,car_ano,car_qtd)'
+        $insert = 'insert into tbcarros(car_valor_diaria,car_modelo,car_ano,car_qtd) values({$_POST['gravar']})'
     }
 ?>
