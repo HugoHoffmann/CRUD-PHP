@@ -8,10 +8,10 @@
     $aConfig['password'] = 'hoffmannhugo';
     
        // mail.inc
-    $aConfig['SMTPSecure'] = 'ssl';
+    $aConfig['SMTPSecure'] = 'tls';
     $aConfig['Host']       = 'smtp.gmail.com'; 
     $aConfig['Port']       = '587'; 
-    $aConfig['Username']   = 'hugohoffmann04@gmail.com';
-    $aConfig['Password']   = 'hugoho123*';
-    $aConfig['From']       = 'hugohoffmann04@gmail.com';
+    $aConfig['Username']   = '';
+    $aConfig['Password']   = '';
+    $aConfig['From']       = '';
     $aConfig['FromName']   = 'LocaCar';
