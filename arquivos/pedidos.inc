@@ -73,7 +73,7 @@
                         }
                     }
                     else{
-                         $sSQL = 'select clicodigo,pesnome from tbcliente INNER JOIN tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo) where pesmail = '. trataValores($sUser).' ;';
+                         $sSQL = 'select clicodigo,pesnome from tbcliente INNER JOIN tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo) where tbpessoa.pescodigo = '.$sUser['pescodigo'].' ;';
                         $aResultados = executa($sSQL);
                         foreach ($aResultados AS $aResultado){
                             echo '<option value="'.$aResultado['clicodigo'].'">'.$aResultado['pesnome'].'</option>';
