@@ -1,6 +1,6 @@
 <?php
    session_start(); 
-   // iclusão dos dois arquivos abaixo se faz necess�ria para que possa ser realizada as 
+   // iclusão dos dois arquivos abaixo se faz necessária para que possa ser realizada as 
    // operações no banco de dados
    include_once 'arquivos/config.inc';
    include_once 'arquivos/conexao.php';
@@ -42,11 +42,11 @@
         }
         // Conversão da senha pra md5 para verificação no banco de dados, já que no mesmo está armazenado com a mesma codificação
         $sSenha      = md5($sSenha);
-        $sSQL        = 'select pesmail, pessenha from tbpessoa where pesmail = '.trataValores($sUsuario).' and pessenha = '.trataValores($sSenha).' ';
+        $sSQL        = 'select * from tbpessoa where pesmail = '.trataValores($sUsuario).' and pessenha = '.trataValores($sSenha).' ';
         $aResultado = executa($sSQL);
         // caso a cunsulta ao banco retorne algo, significa que o email e senha existem no banco
         if($aResultado){
-            $_SESSION['usuario'] = serialize($sUsuario);
+            $_SESSION['usuario'] = serialize($aResultado[0]); //recebendo o resultado da consulta ele terá todas as informações do usuário
             header('Location: arquivos/index.php?pagina=home');
             echo '<span>Deu boa</span>';
         }
@@ -55,6 +55,9 @@
            echo '<p id="erro">Senha ou e-mail incorretos, tente novamente</p>'; 
         }
     }
-
-
-
+    else{
+        // se a sessão estiver inicializada ela é destruida 
+        if(isset($_SESSION)){
+            session_destroy();
+        }
+    }
