@@ -17,7 +17,7 @@
                             <th>Descrição</th>
                             <th>Valor Diária</th>
                             <th>Ação</th>';
-                $select = 'select * from tbcarros';
+                $select = 'select * from tbcarro';
                 $aResult = executa($select);
                 echo '</tr>';
                 foreach($aResult AS $aResultado){

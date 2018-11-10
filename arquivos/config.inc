@@ -11,7 +11,7 @@
     $aConfig['SMTPSecure'] = 'tls';
     $aConfig['Host']       = 'smtp.gmail.com'; 
     $aConfig['Port']       = '587'; 
-    $aConfig['Username']   = '';
-    $aConfig['Password']   = '';
-    $aConfig['From']       = '';
+    $aConfig['Username']   = 'enviophp05@gmail.com';
+    $aConfig['Password']   = 'envio123';
+    $aConfig['From']       = 'enviophp05@gmail.com';
     $aConfig['FromName']   = 'LocaCar';

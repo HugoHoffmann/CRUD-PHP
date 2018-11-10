@@ -34,7 +34,7 @@
         }
 
         $oMail->send();
-//        echo getInformacaoErro($oMail);
+  echo getInformacaoErro($oMail);
     }
     
     function getInformacaoErro($oMail){

@@ -17,7 +17,7 @@
     </head>
     <header>
         <h2>Locação de carros</h2>
-        <img src="../imagens/logo.png" >
+        <img src="../img/logo.png" >
     </header>
     <nav>
         <ul>
@@ -28,7 +28,7 @@
                 if($sUser=='adm'){
                     echo '<li><a href="index.php?pagina=home">Início</a></li>
                             <li><a href="index.php?pagina=clientes">Clientes</a></li>
-                            <li><a href="index.php?pagina=produtos">Produtos</a></li>
+                            <li><a href="index.php?pagina=carros">Carros</a></li>
                             <li><a href="index.php?pagina=pedidos">Pedidos</a></li>
                             <li><a href="index.php?pagina=pessoas">Pessoas</a></li>
                             <li><a href="../login.php">Sair</a></li>';

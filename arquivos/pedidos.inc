@@ -95,7 +95,7 @@
                 ?>
             </select>
             <input id='qtd' type='number' name='qtd' required="required">
-            <button id='botao' type="button" name="adiciona" onclick="onClickAdicionarProduto();">+</button>
+            <button id='botao' type="button" name="adiciona" onclick="onClickAdicionarCarro();">+</button>
             <br>
             <label for="credito">Carros:</label>
             <table id='miniTabela'>

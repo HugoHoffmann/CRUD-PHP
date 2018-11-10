@@ -1,13 +1,13 @@
 var fTotal    = 0;
 var aProdutos = [];
 
-function onClickAdicionarProduto(){
+function onClickAdicionarCarro(){
     geraTabela();
-    gravaProdutos();
+    gravaCarros();
 }
 
 function geraTabela(){
-   var sProduto = document.getElementById('proSelecao').value.split('-');
+   var sProduto = document.getElementById('carSelecao').value.split('-');
    var iQtd = document.getElementById('qtd').value;
    
     
@@ -42,8 +42,8 @@ function limpaTabela(){
    fTotal =0;
 }
 
-function gravaProdutos(){
-    var sProCodigo  = document.getElementById('proSelecao').value.split('-');
+function gravaCarros(){
+    var sProCodigo  = document.getElementById('carSelecao').value.split('-');
     var sQuantidade = document.getElementById('qtd').value;
     
     var oProduto    = new Object();

@@ -2,6 +2,7 @@ CREATE TABLE IF NOT EXISTS tbpessoa (
 pescodigo integer NOT NULL,
 pesnome varchar(50) NOT NULL,
 pesmail text,
+pessenha text,
 CONSTRAINT pk_pessoa PRIMARY KEY (pescodigo)
 );
 CREATE TABLE IF NOT EXISTS tbcliente (
