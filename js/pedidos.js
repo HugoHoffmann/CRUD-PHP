@@ -1,5 +1,5 @@
 var fTotal    = 0;
-var aProdutos = [];
+var aCarros = [];
 
 function onClickAdicionarCarro(){
     geraTabela();
@@ -7,7 +7,7 @@ function onClickAdicionarCarro(){
 }
 
 function geraTabela(){
-   var sProduto = document.getElementById('carSelecao').value.split('-');
+   var sCarro = document.getElementById('carSelecao').value.split('-');
    var iQtd = document.getElementById('qtd').value;
    
     
@@ -26,11 +26,11 @@ function geraTabela(){
    eTr.appendChild(eTd2);
    
    var eTd3 = document.createElement('td');
-   eTd3.innerHTML = 'R$' + parseInt(sProduto[2])*iQtd + ' Reais';
+   eTd3.innerHTML = 'R$' + parseInt(sCarro[2])*iQtd + ' Reais';
    eTd3.setAttribute("class", "linha");
    eTr.appendChild(eTd3);
    
-   fTotal += parseInt(sProduto[2])*iQtd; 
+   fTotal += parseInt(sCarro[2])*iQtd; 
    var eTotal = document.getElementById('total');
    eTotal.setAttribute('value', fTotal);
 }
@@ -43,23 +43,23 @@ function limpaTabela(){
 }
 
 function gravaCarros(){
-    var sProCodigo  = document.getElementById('carSelecao').value.split('-');
+    var sCarCodigo  = document.getElementById('carSelecao').value.split('-');
     var sQuantidade = document.getElementById('qtd').value;
     
-    var oProduto    = new Object();
-    oProduto.codigo = sProCodigo[0];
-    oProduto.qtd    = sQuantidade;
+    var oCarro    = new Object();
+    oCarro.codigo = sCarCodigo[0];
+    oCarro.qtd    = sQuantidade;
     
-    aProdutos.push(oProduto);
+    aCarros.push(oCarro);
 
-    var sJson = JSON.stringify(aProdutos); //[{"produto"="1", "qdt"="10"}, {"produto"="2", "qdt"="9"}]
+    var sJson = JSON.stringify(aProdutos); //[{"carro"="1", "qdt"="10"}, {"carro"="2", "qdt"="9"}]
 
 // gravar o sJson no campo escondido
-    var eCampo = document.getElementById('produtos');
+    var eCampo = document.getElementById('carros');
     eCampo.setAttribute('value', sJson);
     
 
-//json do arquivo .txt "produtos"="[{"produto"="1", "qdt"="10"}, {"produto"="2", "qdt"="9"}]"
+//json do arquivo .txt "carro"="[{"carro"="1", "qdt"="10"}, {"carro"="2", "qdt"="9"}]"
 }
 
 
