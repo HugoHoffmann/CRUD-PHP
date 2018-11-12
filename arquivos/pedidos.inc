@@ -107,7 +107,7 @@
             </table>
             <label for="total">Total:</label>
             <input readonly="true" type="text" name="total" id="total" value="0">
-            <input type="text" name="Carros" id="Carros">
+            <input type="text" name="carros" id="carros">
             <input type="reset" value='Limpar' onclick="limpaTabela();">
             <input type="submit" value='Gravar' name="gravar" >
         </form>
@@ -125,7 +125,7 @@
             $aValores = [$iCodigoPedido, $iCodigoCliente, $iData];
             insere('tbpedido', $aColunas, $aValores);
 
-            $aPedidos = json_decode($_POST['Carros'],true);
+            $aPedidos = json_decode($_POST['carros'],true);
             foreach($aPedidos AS $aPedido){
                 $iPedQtd    = (int) $aPedido['qtd'];
                 $icarCodigo = (int) $aPedido['codigo'];
