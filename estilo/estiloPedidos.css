@@ -98,7 +98,7 @@ input[type=submit]:hover {
     background-color: #757575;
     color: white;
 }
-#proSelecao{
+#carSelecao{
     width: 53.7%;
     padding: 10px 10px;
     margin: 8px 0;
@@ -167,7 +167,7 @@ input[type=submit]:hover {
     cursor: pointer;
     text-decoration: underline;
 }
-#produtos{
+#carros{
     display: none;
 }
 label{
