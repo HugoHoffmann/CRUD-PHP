@@ -30,7 +30,7 @@
                                     <td>'.$aResultado['pedcodigo'].'</td>
                                     <td>'.$aResultado['pesnome'].'</td>
                                     <td>'.$aResultado['peddata'].'</td>
-                                    <td><a class="acao" href="index.php?pagina=Carros&pedido='.$aResultado['pedcodigo'].'">Ver</a></td>
+                                    <td><a class="acao" href="index.php?pagina=carros&pedido='.$aResultado['pedcodigo'].'">Ver</a></td>
                                     <td><a class="acao" href="index.php?pagina=pedidos&remove='.$aResultado['pedcodigo'].'">Remover</a></td>
                                  </tr>';
                         }
@@ -133,7 +133,7 @@
                 $aColunas = ['pedcodigo', 'carcodigo', 'pepquantidade'];
                 $aValores = [$iCodigoPedido, $icarCodigo, $iPedQtd];
 
-                insere('tbpedidoproduto', $aColunas, $aValores);
+                insere('tbpedidocarro', $aColunas, $aValores);
             }
         }
         else{
@@ -149,11 +149,11 @@
         $aCredito       = executa($sSQL);
         $iTotal         = (float)$_POST['total'];
             $sSQL       = 'select SUM(pepquantidade*carvalor) AS total
-                          from tbpedidoproduto
+                          from tbpedidocarro
                            inner join tbcarro
-                            on(tbpedidoproduto.carcodigo=tbcarro.carcodigo)
+                            on(tbpedidocarro.carcodigo=tbcarro.carcodigo)
                            inner join tbpedido
-                            on (tbpedido.pedcodigo=tbpedidoproduto.pedcodigo)
+                            on (tbpedido.pedcodigo=tbpedidocarro.pedcodigo)
                            inner join tbcliente
                             on(tbcliente.clicodigo=tbpedido.clicodigo)
                           where tbpedido.clicodigo='.$iCodigoCliente.'
