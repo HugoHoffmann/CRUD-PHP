@@ -70,13 +70,13 @@
             }
             
             if(isset($_GET['remove'])){
-                $iCodigoProduto = $_GET['remove'];
-                deleta('tbcarro', 'carcodigo', $iCodigoProduto);
+                $iCodigoCarro = $_GET['remove'];
+                deleta('tbcarro', 'carcodigo', $iCodigoCarro);
             }
             
             if(isset($_GET['codigo'])){
-                $iCodigoProduto = $_GET['codigo'];
-                deleta('tbpedidocarro', 'carcodigo', $iCodigoProduto);
+                $iCodigoCarro = $_GET['codigo'];
+                deleta('tbpedidocarro', 'carcodigo', $iCodigoCarro);
                 geraTabelaPedido();
             }
         ?>
