@@ -17,7 +17,7 @@ function geraTabela(){
    
    var eTd1 = document.createElement('td');
    eTd1.setAttribute("class", "linha");
-   eTd1.innerHTML = sProduto[1];
+   eTd1.innerHTML = sCarro[1];
    eTr.appendChild(eTd1);
    
    var eTd2 = document.createElement('td');
@@ -52,7 +52,7 @@ function gravaCarros(){
     
     aCarros.push(oCarro);
 
-    var sJson = JSON.stringify(aProdutos); //[{"carro"="1", "qdt"="10"}, {"carro"="2", "qdt"="9"}]
+    var sJson = JSON.stringify(aCarros ); //[{"carro"="1", "qdt"="10"}, {"carro"="2", "qdt"="9"}]
 
 // gravar o sJson no campo escondido
     var eCampo = document.getElementById('carros');
