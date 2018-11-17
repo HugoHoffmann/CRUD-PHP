@@ -6,11 +6,11 @@
     $aConfig['dbname']   = 'locacao';
     $aConfig['user']     = 'postgres';
     $aConfig['password'] = 'hoffmannhugo';
-    
+
        // mail.inc
-    $aConfig['SMTPSecure'] = 'tls';
-    $aConfig['Host']       = 'smtp.gmail.com'; 
-    $aConfig['Port']       = '587'; 
+    $aConfig['SMTPSecure'] = 'ssl';
+    $aConfig['Host']       = '173.194.67.109';
+    $aConfig['Port']       = '587';
     $aConfig['Username']   = 'enviophp05@gmail.com';
     $aConfig['Password']   = 'envio123';
     $aConfig['From']       = 'enviophp05@gmail.com';

@@ -1,10 +1,10 @@
 <?php
     include('PHPMailer.php');
     include('SMTP.php');
-    
+
     function getMail(){
         global $aConfig;
-        
+
         $oMail = new PHPMailer();
         $oMail->isSMTP();
         $oMail->isHTML();
@@ -17,10 +17,10 @@
         $oMail->From       = $aConfig['From'];
         $oMail->FromName   = $aConfig['FromName'];
         $oMail->CharSet    = 'ISO-8859-1';
-        
+
         return $oMail;
     }
-    
+
     function enviaEmail($sEmailDestino, $sAsunto, $sMensagem, $aAnexos = []){
         $oMail = getMail();
         $oMail->addAddress($sEmailDestino);
@@ -34,9 +34,9 @@
         }
 
         $oMail->send();
-  echo getInformacaoErro($oMail);
+  echo '<h1>'.getInformacaoErro($oMail).'</h1>';
     }
-    
+
     function getInformacaoErro($oMail){
         return $oMail->ErrorInfo;
     }
