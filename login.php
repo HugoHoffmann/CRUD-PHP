@@ -59,14 +59,27 @@
             die();
         }
         // Conversão da senha pra md5 para verificação no banco de dados, já que no mesmo está armazenado com a mesma codificação
+        $sSenhaCookie = $sSenha;
         $sSenha      = md5($sSenha);
         $sSQL        = 'select * from tbpessoa where pesmail = '.trataValores($sUsuario).' and pessenha = '.trataValores($sSenha).' ';
         $aResultado = executa($sSQL);
         // caso a cunsulta ao banco retorne algo, significa que o email e senha existem no banco
         if($aResultado){
+          // verificação se fora setado o lembrar senha, caso sim armazena em cookie a senha e email
+            if($_POST['lembrasenha']){
+                setcookie('senha',$sSenhaCookie);
+                setcookie('usuario',$sUsuario);
+            }
+            else{
+              // caso não tenha setado e exista cookie, os mesmos são destruidos
+                if(isset($_COOKIE)){
+                    setcookie('senha');
+                    setcookie('usuario');
+                }
+            }
             $_SESSION['usuario'] = serialize($aResultado[0]); //recebendo o resultado da consulta ele terá todas as informações do usuário
+            // redirecionamento para página inicial já que o email e senha correspondem a um usuário
             header('Location: arquivos/index.php?pagina=home');
-            echo '<span>Deu boa</span>';
         }
         // caso a consulta não retorne nenhum valor, significa que o email e senha informado não existem
         else{
