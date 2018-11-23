@@ -22,10 +22,12 @@
     <nav>
         <ul>
             <?php
+            // obtenção do tipo de usuário em variável
                 $sUser = unserialize($_SESSION['usuario']);
-            // verificação necessária para mostragem do menu para o cliente logado, 
+            // verificação necessária para mostragem do menu para o cliente logado,
             // sendo que o mesmo só poderá verificar se possui pedidos
                 if($sUser=='adm'){
+                  // mostragem dos itens do menu de acordo com o privilégio de adm
                     echo '<li><a href="index.php?pagina=home">Início</a></li>
                             <li><a href="index.php?pagina=clientes">Clientes</a></li>
                             <li><a href="index.php?pagina=carros">Carros</a></li>
@@ -36,12 +38,12 @@
                 // neste caso o usuário logado será o adm,
                 // sendo que o mesmo tem todos os privilégios
                 else{
-                                 // passagem de parâmentro abaixo para que a página home fique acessível   
+                                 // passagem de parâmentro abaixo para que a página home fique acessível
                                  // o mesmo acontece com o restante das opções
                     echo'
                         <li><a href="index.php?pagina=home">Início</a></li>
                         <li><a href="index.php?pagina=pedidos">Pedidos</a></li>
-                        <li><a href="../login.php">Sair</a></li>';        
+                        <li><a href="../login.php">Sair</a></li>';
                 }
             ?>
         </ul>
