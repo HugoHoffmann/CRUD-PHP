@@ -1,6 +1,6 @@
 <?php
-   session_start(); 
-   // iclusão dos dois arquivos abaixo se faz necessária para que possa ser realizada as 
+   session_start();
+   // iclusão dos dois arquivos abaixo se faz necessária para que possa ser realizada as
    // operações no banco de dados
    include_once 'arquivos/config.inc';
    include_once 'arquivos/conexao.php';
@@ -19,9 +19,27 @@
             <form action="" method="POST">
                 <legend id="login">Login</legend>
                 <label class="entrar" for="usuario">E-mail</label>
-                <input type="text" name="usuario" placeholder="exemplo@exemplo.com.br">
-                <label class="entrar" for="senha">Senha</label>
-                <input type="password" name="senha" placeholder="senha...">
+                <?php
+                    if((isset($_COOKIE['usuario'])) && (isset($_COOKIE['senha']))){
+                        usaCookie();
+                    }
+                    else{
+                        naoUsaCookie();
+                    }
+                    function naoUsaCookie(){
+                        echo'<input type="text" name="usuario" placeholder="exemplo@exemplo.com.br">
+                             <label class="entrar" for="senha">Senha</label>
+                             <input type="password" name="senha" placeholder="senha...">';
+                    }
+                    function usaCookie(){
+                            echo '<input type="text" name="usuario" value="'.$_COOKIE['usuario'].'">
+                                  <label class="entrar" for="senha">Senha</label>
+                                  <input type="password" name="senha" value="'.$_COOKIE['senha'].'">';
+                    }
+
+                ?>
+                <input type="checkbox" name="lembrasenha">
+                <label for="lembrasenha">Lembrar Senha</label>
                 <input id="submeter" type="submit" value='Entrar  ' name="entrar">
             </form>
         </div>
@@ -52,11 +70,11 @@
         }
         // caso a consulta não retorne nenhum valor, significa que o email e senha informado não existem
         else{
-           echo '<p id="erro">Senha ou e-mail incorretos, tente novamente</p>'; 
+           echo '<p id="erro">Senha ou e-mail incorretos, tente novamente</p>';
         }
     }
     else{
-        // se a sessão estiver inicializada ela é destruida 
+        // se a sessão estiver inicializada ela é destruida
         if(isset($_SESSION)){
             session_destroy();
         }
