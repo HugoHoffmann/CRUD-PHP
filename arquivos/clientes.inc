@@ -75,7 +75,7 @@
             <input type="number" name="credito" required="required">
             <hr>
             <input type="reset" value='Limpar'name='limpar' >
-            <input type="submit" value='Gravar' name='gravar' onclick="verificaCamposCli();">
+            <input type="submit" value='Gravar' name='gravar' onclick="atualizaTabela();">
         </form>
     </section>
 </html>
