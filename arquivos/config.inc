@@ -9,8 +9,8 @@
 
        // mail.inc
     $aConfig['SMTPSecure'] = 'ssl';
-    $aConfig['Host']       = '173.194.67.109';
-    $aConfig['Port']       = '587';
+    $aConfig['Host']       = 'smpt.gmail.com';
+    $aConfig['Port']       =  '465';//'587';
     $aConfig['Username']   = 'enviophp05@gmail.com';
     $aConfig['Password']   = 'envio123';
     $aConfig['From']       = 'enviophp05@gmail.com';

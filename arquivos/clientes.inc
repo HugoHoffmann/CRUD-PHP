@@ -1,3 +1,18 @@
+<?php
+  //
+  if(isset($_GET['ajax'])){
+    geraTabela();
+  }
+  if(isset($_GET['ajax'])){
+    $iCodigoCliente = $_POST['iClicodigo'];
+    $sSQL           = 'select clicredito from tdcliente where clicodogo = '.$iCodigoCliente.'; ';
+    $aCredito       = executa($sSQL);
+    ob_clean();
+    echo $fCredito;
+    die();
+  }
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,8 +45,8 @@
                           </tr>';
                 }
             }
-            
-            //Condição para para realizar a exclusão de algum cliente    
+
+            //Condição para para realizar a exclusão de algum cliente
             if(isset($_GET['remove'])){
                 $iCodigoCliente = $_GET['remove'];
                 deleta('tbcliente', 'clicodigo', $iCodigoCliente);
@@ -70,9 +85,9 @@
         $iCodigoCliente = (int) $_POST['codigo'];
         $iNomeCliente = (int) $_POST['pes_selecao_codigo'];
         $iCreditoCliente = (float) $_POST['credito'];
-        
+
         $aColunas = ['clicodigo', 'pescodigo', 'clicredito'];
         $aValores = [$iCodigoCliente, $iNomeCliente, $iCreditoCliente];
-        
+
         insere('tbcliente', $aColunas, $aValores);
     }
