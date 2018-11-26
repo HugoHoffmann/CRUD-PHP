@@ -1,5 +1,6 @@
 <?php
     function getConexao(){
+        // vetor com todos os dados para a conexão ao banco de dados
         global $aConfig;
         
         $sHost     = $aConfig['host'];
@@ -50,7 +51,8 @@
         executa('UPDATE '.$sTabela.' set '.$aColuna.'= '.trataValores($aValor).' where '.$aColunaCondicao.'= '.$aCondicao.' ;');
     }
 
-
+// função para o tratamento de valores, sempre que os valores a serem armazenado ao banco fores strings, os mesmos será concatenados com aspas para aceitação 
+// do banco
     function trataValores($aValores){
         if(is_array($aValores)){
                 foreach ($aValores as $iIndice => $xValor){
