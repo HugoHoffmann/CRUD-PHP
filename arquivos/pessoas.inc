@@ -38,17 +38,27 @@
                 $iCodigoPessoa = $_GET['remove'];
                 deleta('tbpessoa', 'pescodigo', $iCodigoPessoa);
             }
+            // verificacao se fora clicado na opção de geracao de senha
             if(isset($_GET['gerar'])){
+                // query de consulta do email
                 $sSelectEmail     = 'select pesmail from tbpessoa where pescodigo = '.$_GET['gerar'].'; ';
                 $aResultado       = executa($sSelectEmail);
                 $sEmail           = $aResultado[0]['pesmail'];
+                // caracteres para geração de senha
                 $sCaracteres      = '123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKMNOPQRSTUVWXYZ';
+                // funcao para mistura de posições da string
                 $sMistura         = str_shuffle($sCaracteres);
+                // retorna 10 caracteres
                 $sSenha           = substr($sMistura,0,10);
+                // monstragem de senha já que a funcao mail não funcionou
                 echo 'Senha '.$sSenha;
+                // funcao para o envio de email
                 enviaEmail($sEmail, 'Login e Senha Gerados', 'Seja bem vindo, para logar no sistema dever� utilizar como usu�rio o e-mail: '.$sEmail.' e a senha: '.$sSenha.' ');
+                // codificação da senha gerada para md5
                 $sSenhaCodificada = md5($sSenha);
+                // codigo da pessoa a qual fora gerada a senha
                 $iCodigoPessoa    = $_GET['gerar'];
+                // funcao de atualização para gravar a senha gerada
                 atualiza('tbpessoa','pessenha',$sSenhaCodificada,'pescodigo',$iCodigoPessoa);
             }
             geraTabela();
@@ -78,8 +88,10 @@
         $iNomePessoa   = $_POST['nome'];
         $iEmailPessoa  = $_POST['email'];
         
+        // colunas a serem inseridas 
         $aColunas = ['pescodigo', 'pesnome', 'pesmail'];
+        // valores que irão preencher as colunas
         $aValores = [$iCodigoPessoa, $iNomePessoa, $iEmailPessoa];
-        
+        // funcao para inserção de dados na tabela tbpessoa
         insere('tbpessoa', $aColunas, $aValores);
     }
