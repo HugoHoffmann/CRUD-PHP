@@ -1,5 +1,6 @@
 <?php
     // conexao.inc
+    // inserção das credencias de acesso ao banco de dados em uma variável global
     $aConfig = [];
     $aConfig['host']     = '127.0.0.1';
     $aConfig['port']     = '5432';

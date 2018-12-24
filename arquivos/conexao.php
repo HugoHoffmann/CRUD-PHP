@@ -17,15 +17,16 @@
         
         return $sConexao;
     }
-    
+    // funcao com retorno para a conexão com o banco de dados
     function conecta(){
+        // retorno da conexão com o uso da funcao getconexao
         return pg_connect(getConexao());
     }
-    
+    // funcao para o fechamento da conexao 
     function desconecta(){
         return pg_close(conecta());
     }
-    
+    // funcao para a execucao de comandos SQLs
     function executa($sSQL){
         $oConexao = conecta();
         
@@ -38,15 +39,18 @@
         }
         
         desconecta();
-        
+        //retorno do vetor com todos os dados do SQL
         return $aRetorno;
     }
+    // funcao para o insercao de dados
     function insere($sTabela, $aColunas, $aValores){
         executa('INSERT INTO '.$sTabela.' ('.implode(',',$aColunas).') VALUES ('.implode(',', trataValores($aValores)).');');
     }
+    // funcao para deletar dados
     function deleta($sTabela, $aColuna, $aValor){
         executa('DELETE FROM '.$sTabela.' WHERE '.$aColuna.'= '.$aValor.';');
     }
+    // funcao para update de dados
     function atualiza($sTabela, $aColuna, $aValor, $aColunaCondicao, $aCondicao){
         executa('UPDATE '.$sTabela.' set '.$aColuna.'= '.trataValores($aValor).' where '.$aColunaCondicao.'= '.$aCondicao.' ;');
     }
