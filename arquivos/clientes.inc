@@ -1,11 +1,15 @@
 <?php
-  //
+  // verificacao de requisicao ajax
   if(isset($_GET['ajax'])){
+    // recarregamento da tabela  
     geraTabela();
   }
+  // verificacao em ajax para verificacao de creditos do clientes
   if(isset($_GET['ajax'])){
+    // obtencao do codigo do cliente para verificacao via SQL
     $iCodigoCliente = $_POST['iClicodigo'];
     $sSQL           = 'select clicredito from tdcliente where clicodogo = '.$iCodigoCliente.'; ';
+    // execucao do SQL
     $aCredito       = executa($sSQL);
     ob_clean();
     echo $fCredito;
@@ -36,6 +40,7 @@
             function geraTabela(){
                 $sSQL = 'select clicodigo,pesnome,clicredito from tbcliente INNER JOIN tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo)';
                 $aResultados = executa($sSQL);
+                // percorrendo dados da consulta SQL
                 foreach($aResultados AS $aResultado){
                     echo '<tr>
                             <td>'.$aResultado['clicodigo'].'</td>
@@ -49,6 +54,7 @@
             //Condição para para realizar a exclusão de algum cliente
             if(isset($_GET['remove'])){
                 $iCodigoCliente = $_GET['remove'];
+                // funcao para exclusao de cliente de acordo com o codigo
                 deleta('tbcliente', 'clicodigo', $iCodigoCliente);
             }
             geraTabela();
@@ -63,6 +69,7 @@
             <label for="nome">Nome:<span>*</span></label>
             <select name='pes_selecao_codigo' required="required">
                 <?php
+                // bunca de pessoas cadastradas para o uso de combo box
                     $sSQL = 'select * from tbpessoa';
                     $aResultados = executa($sSQL);
                     foreach ($aResultados AS $aResultado){
@@ -88,6 +95,6 @@
 
         $aColunas = ['clicodigo', 'pescodigo', 'clicredito'];
         $aValores = [$iCodigoCliente, $iNomeCliente, $iCreditoCliente];
-
+        // funcao para insercao de dados no banco de dados
         insere('tbcliente', $aColunas, $aValores);
     }
