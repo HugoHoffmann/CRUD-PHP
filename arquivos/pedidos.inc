@@ -20,9 +20,13 @@
                 <th>Ação</th>
             </tr>
             <?php
+            // funcao para geracao de tabela com pedidos
                 function geraTabela(){
+                    // acesso a variavel global sUser
                      global $sUser;
+                    // caso o usuario seja adm
                     if($sUser == 'adm'){
+                        // selecao de todos os pedidos
                         $sSelect = 'select pedcodigo, pesnome, peddata from tbcliente inner join tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo) inner join tbpedido on(tbpedido.clicodigo=tbcliente.clicodigo)';
                         $aResultados = executa($sSelect);
                         foreach($aResultados AS $aResultado){
@@ -36,6 +40,7 @@
                         }
                     }
                     else{
+                        // selecao de pedidos de acordo com o usuario
                         $sSelect = 'select pedcodigo, pesnome, peddata from tbcliente inner join tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo) inner join tbpedido on(tbpedido.clicodigo=tbcliente.clicodigo) where pesmail = '.trataValores($sUser).' ;';
                         $aResultados = executa($sSelect);
                         foreach($aResultados AS $aResultado){
@@ -49,9 +54,11 @@
                         }
                         
                     }
-                }
+                }// condicao para exclusao de pedido
                 if(isset($_GET['remove'])){
+                    // obtencao de codigo do pedido
                     $iPedido = $_GET['remove'];
+                    // funcao para exclusao de pedido passando o codigo do pedido como parâmetro
                     deleta('tbpedido', 'pedcodigo', $iPedido);
                 }
                 geraTabela();
@@ -65,13 +72,16 @@
             <label for="credito">Cliente:<span>*</span></label>
             <select name='cli_selecao' required="required">
                 <?php
+                    // caso o usuario seja adm
                     if($sUser == 'adm'){
+                        // selecao de todos os clientes para mostragem no combo box
                         $sSQL = 'select clicodigo,pesnome from tbcliente INNER JOIN tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo)';
                         $aResultados = executa($sSQL);
                         foreach ($aResultados AS $aResultado){
                             echo '<option value="'.$aResultado['clicodigo'].'">'.$aResultado['pesnome'].'</option>';
                         }
                     }
+                    // selecao do cliente de acordo com o codigo do mesmo 
                     else{
                          $sSQL = 'select clicodigo,pesnome from tbcliente INNER JOIN tbpessoa on(tbcliente.pescodigo=tbpessoa.pescodigo) where tbpessoa.pescodigo = '.$sUser['pescodigo'].' ;';
                         $aResultados = executa($sSQL);
@@ -87,6 +97,7 @@
             <label for="car_selecao">Carro/Qtd:<span>*</span></label>
             <select id='carSelecao' name='car_selecao' required="required">
                 <?php
+                // selecao de todos os carros para selecao no combo box
                     $sSQL = 'select * from tbcarro';
                     $aResultados = executa($sSQL);
                     foreach ($aResultados AS $aResultado){
@@ -114,17 +125,18 @@
     </section>
 </html>
 <?php
+// funcao para verificao de creditos do cliente no momento de gravar o pedido
     function verificaCarrosCreditos($iTotal,$aResult,$aCredito){
         $iTotal +=  (float)$aResult[0]['clicredito'];
         $iCodigoCliente = (int) $_POST['cli_selecao'];
         $iCodigoPedido  = (int) $_POST['numero'];
         $iData          = $_POST['data'];
-
+        // se possui creditos realiza a gravacao na base de dados 
         if((float)$aCredito[0]['clicredito'] >= $iTotal){
             $aColunas = ['pedcodigo', 'clicodigo', 'peddata'];
             $aValores = [$iCodigoPedido, $iCodigoCliente, $iData];
             insere('tbpedido', $aColunas, $aValores);
-
+            // pega os pedidos em formato json no campo invisivel
             $aPedidos = json_decode($_POST['carros'],true);
             foreach($aPedidos AS $aPedido){
                 $iPedQtd    = (int) $aPedido['qtd'];
@@ -136,10 +148,12 @@
                 insere('tbpedidocarro', $aColunas, $aValores);
             }
         }
+        // caso o cliente não possui credito
         else{
             echo '<h1>Cliente não possui crédito suficiente</h1>';
         }
     }
+    // verificacao para gravar dados em tabela
     if(isset($_POST['gravar'])){
         $iCodigoCliente = (int) $_POST['cli_selecao'];
         $iCodigoPedido  = (int) $_POST['numero'];
