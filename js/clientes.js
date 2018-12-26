@@ -1,3 +1,4 @@
+// funcao ajax para atualizacao de tabela de clientes
 function atualizaTabela(){
     var oDados;
     var retorno;
